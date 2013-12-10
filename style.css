@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: url('images/background.jpg');
+    color: white;
+    font-family: "microsoft yahei";
+    text-shadow: 1px 1px 1px #646464;
+}
+ul {
+    list-style: none;
+}
+.input {
+    width: 350px;
+    height: 30px;
+    margin: 15px 20px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.42);
+    border: 1px solid rgba(255, 255, 255, 0.63);
+    border-radius: 3px;
+    font-size: 30px;
+    color: white;
+    text-align: center;
+}
+.card {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    background:gray url(./images/mushroom.png) no-repeat;
+    background-size:40px 40px;
+    background-position:center;
+}
+.card_form{
+    width:50px;
+    height:50px;
+    margin:5px;
+    display:inline-block;
+}
+#index_body {
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 150px;
+    margin: -75px 0 0 -200px;
+    background: rgba(255, 255, 255, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 4px;
+    position: absolute;
+}
+#index_body_title {
+    text-align: center;
+    font-size: 20px;
+    line-height: 50px;
+    display: block;
+}
+#wait_body,
+#game_body {
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 450px;
+    margin: -225px 0 0 -200px;
+    background: rgba(255, 255, 255, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 4px;
+    position: absolute;
+}
+#wait_body ul {
+    margin: 10px;
+}
+#wait_body ul li {
+    font-size: 20px;
+    line-height: 35px;
+    display: block;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.28);
+}
+#wait_body ul li::last-child {
+    border: 0
+}
+#wait_icon{
+    display:block;
+    margin:0 auto;
+}
+.result_num{
+    width:20px;
+    height:20px;
+    font-size:12px;
+    line-height:20px;
+    text-align:center;
+    vertical-align:middle;
+    display:inline-block;
+    border:1px solid rgba(255, 255, 255, 0.58);
+    border-radius:15px;
+    background:rgba(255, 255, 255, 0.53);
+    color:black;
+
+}
+.result_order{
+    font-size:12px;
+    text-align:center;
+    display:block;
+}
