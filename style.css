@@ -54,6 +54,9 @@ ul {
     line-height: 50px;
     display: block;
 }
+#name_fill,#game_waiting{
+    display: none;
+}
 #wait_body,
 #game_body {
     top: 50%;
