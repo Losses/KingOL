@@ -10,8 +10,8 @@ k_head();
         ?>
     </div>
     <div id="area_refresh">
-        <?php
-        require("./template/index_refresh_area.php");
-        ?>
     </div>
+    <?php
+    k_refresh("#area_refresh", "./index_refresh_area.php");
+    ?>
 </body>

@@ -1,7 +1,7 @@
 <?php
 
 include_once("./function.php");
-$file_name = k_db_get("channel", "folder", "start",".");
+$file_name = k_db_get("channel", "folder", "start");
 if (file_exists($file_name)) {
     ?>
     <script>
@@ -17,6 +17,6 @@ if (file_exists($file_name)) {
         $("#name_fill").show();
     </script>
     <?php
-    k_refresh("this", "./template/index_refresh_area.php");
+
 }
 ?>
