@@ -15,12 +15,13 @@ k_head();
 
             function refresh_wait() {
                 $('#index_body').load('wait.php');
-            };
+            }
+            ;
 
             function refill() {
-                window.clearInterval(refresh);
+                window.clearInterval(t);
                 $("#action_refresh").remove();
-                self.setInterval(refresh_wait, 1000);
+                t = self.setInterval(refresh_wait, 1000);
                 $('#index_body').load('wait.php');
             }
             ;

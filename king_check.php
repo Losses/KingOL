@@ -1,3 +1,22 @@
+<script>
+    $(document).ready(function() {
+        var options = {
+            target: '#index_body',
+            success: refill
+        };
+        $('#name_input_form').ajaxForm(options);
+    });
+
+    function refresh_wait() {
+        $('#index_body').load('king_check.php');
+    }
+    ;
+
+    function refill() {
+        t = self.setInterval(refresh_wait, 1000);
+    }
+    ;
+</script>
 <?php
 session_start();
 include_once("function.php");
@@ -10,17 +29,18 @@ if ($file_content[0] == $_SESSION['id']) {
     } else {
         k_head();
         ?>
-        <body>
-            <div id="index_body">
-                <a id="index_body_title">You Are The King,Tell me the Order!</a>
-                <form action="#">
-                    <input name="order" class="input" />
-                </form>
-            </div>
-        </body>
+        <a id="index_body_title">You Are The King,Tell me the Order!</a>
+        <form action="king_check.php">
+            <input name="order" class="input" />
+        </form>
         <?php
     }
 } else {
-    header("Location: ./wait_select.php");
+    ?>
+    <script>
+        window.clearInterval(t);
+        $('#index_body').load('wait_select.php');
+    </script>
+    <?php
 }
 ?>

@@ -12,7 +12,12 @@
             ?><li><?php echo $player; ?></li><?php
         }
     } else {
-        header("Location: ./game.php");
+        ?>
+            <script>
+            window.clearInterval(t);
+            $('#index_body').load('game.php');
+            </script>
+        <?php
     }
     ?>
 </ul>
