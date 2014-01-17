@@ -6,28 +6,26 @@ k_head();
     <div id="index_body">
         <script>
             $(document).ready(function() {
-                var options = {
+                $('#name_input_form').ajaxForm({
                     target: '#index_body',
-                    success: refill
-                };
-                $('#name_input_form').ajaxForm(options);
+                    success: function() {
+                        window.clearInterval(t);
+                        $("#action_refresh").remove();
+                        t = self.setInterval(function() {
+                            $('#index_body').load('wait.php');
+                        }, 1000);
+                        $('#index_body').load('wait.php');
+                    }
+                });
             });
-
-            function refresh_wait() {
-                $('#index_body').load('wait.php');
-            }
-            ;
-
-            function refill() {
-                window.clearInterval(t);
-                $("#action_refresh").remove();
-                t = self.setInterval(refresh_wait, 1000);
-                $('#index_body').load('wait.php');
-            }
-            ;
         </script>
+        <div id="name_fill">
+            <a id="index_body_title">Tell Me Your Name!</a>
+            <form id="name_input_form" action="savename.php">
+                <input class="input" name="ID" />
+            </form>
+        </div>
         <?php
-        require ("./template/name_fill.php");
         require ("./template/wait_gaming.php");
         ?>
     </div>

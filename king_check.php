@@ -1,21 +1,20 @@
 <script>
     $(document).ready(function() {
-        var options = {
+        $('#order').ajaxForm({
             target: '#index_body',
-            success: refill
-        };
-        $('#name_input_form').ajaxForm(options);
+            success: function() {
+                t = self.setInterval(function() {
+                    window.clearInterval(t);
+                    $('#index_body').load('king_check.php');
+                }, 1000);
+            }
+        });
     });
-
-    function refresh_wait() {
-        $('#index_body').load('king_check.php');
-    }
-    ;
-
-    function refill() {
-        t = self.setInterval(refresh_wait, 1000);
-    }
-    ;
+    $('#order').submit(
+            function() {
+                $(this).ajaxSubmit();
+                return false;
+            });
 </script>
 <?php
 session_start();
@@ -25,12 +24,16 @@ if ($file_content[0] == $_SESSION['id']) {
     if (isset($_GET['order'])) {
         $file_name = k_db_get("channel", "folder", "result/order");
         file_put_contents($file_name, $_GET["order"], FILE_APPEND);
-        header("Location: ./wait_select.php");
+        ?>
+        <script>
+            window.clearInterval(t);
+            $('#index_body').load('wait_select.php');
+        </script>
+        <?php
     } else {
-        k_head();
         ?>
         <a id="index_body_title">You Are The King,Tell me the Order!</a>
-        <form action="king_check.php">
+        <form action="king_check.php" id="order">
             <input name="order" class="input" />
         </form>
         <?php
@@ -39,6 +42,9 @@ if ($file_content[0] == $_SESSION['id']) {
     ?>
     <script>
         window.clearInterval(t);
+        var t = self.setInterval(function() {
+            $('#index_body').load('wait_select.php');
+        }, 1000);
         $('#index_body').load('wait_select.php');
     </script>
     <?php
