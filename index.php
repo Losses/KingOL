@@ -5,24 +5,28 @@ k_head();
 <body>
     <div id="index_body">
         <script>
+            refresh_clock = 1000;
             $(document).ready(function() {
-                $('#name_input_form').ajaxForm({
-                    target: '#index_body',
-                    success: function() {
-                        window.clearInterval(t);
-                        $("#action_refresh").remove();
-                        t = self.setInterval(function() {
+                $('#name_input_form').submit(function() {
+                    $(this).ajaxSubmit({
+                        target: '#index_body',
+                        success: function() {
+                            window.clearInterval(t);
+                            $("#action_refresh").remove();
+                            t = self.setInterval(function() {
+                                $('#index_body').load('wait.php');
+                            }, refresh_clock);
                             $('#index_body').load('wait.php');
-                        }, 1000);
-                        $('#index_body').load('wait.php');
-                    }
+                        }
+                    });
+                    return false;
                 });
             });
         </script>
         <div id="name_fill">
             <a id="index_body_title">Tell Me Your Name!</a>
             <form id="name_input_form" action="savename.php">
-                <input class="input" name="ID" />
+                <input class="input" name="id" />
             </form>
         </div>
         <?php

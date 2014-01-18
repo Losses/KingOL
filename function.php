@@ -40,4 +40,3 @@ function k_replace($place,$location){
 function k_jump($location){
     echo "<script>window.location.replace(\"$location\")</script>";
 }
-?>

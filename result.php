@@ -37,7 +37,7 @@ if (file_exists($file_name)) {
         window.clearInterval(t);
         t = self.setInterval(function() {
             $('#index_body').load('result.php');
-        }, 1000);
+        }, refresh_clock);
     </script>
     <?php
 } else {

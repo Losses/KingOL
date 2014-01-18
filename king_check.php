@@ -6,7 +6,7 @@
                 t = self.setInterval(function() {
                     window.clearInterval(t);
                     $('#index_body').load('king_check.php');
-                }, 1000);
+                }, refresh_clock);
             }
         });
     });
@@ -44,7 +44,7 @@ if ($file_content[0] == $_SESSION['id']) {
         window.clearInterval(t);
         var t = self.setInterval(function() {
             $('#index_body').load('wait_select.php');
-        }, 1000);
+        }, refresh_clock);
         $('#index_body').load('wait_select.php');
     </script>
     <?php
