@@ -18,11 +18,8 @@ function removeDir($dirName) {
 }
 
 removeDir("db");
-echo "a";
 mkdir("db");
-echo "b";
 mkdir("./db/channel");
-echo "c";
 file_put_contents("./db/information", "CHANNEL ID|0", FILE_APPEND);
 header("Location: ./admin.php");
 ?>

@@ -5,7 +5,7 @@ k_head();
 <body>
     <div id="index_body">
         <script>
-            refresh_clock = 1000;
+            refresh_clock = 2000;
             $(document).ready(function() {
                 $('#name_input_form').submit(function() {
                     $(this).ajaxSubmit({

@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 include_once("function.php");
 $players_count = count(k_db_get("players"));
 do {

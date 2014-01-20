@@ -1,7 +1,7 @@
 <?php
 
-include_once("function.php");
 session_start();
+include_once("function.php");
 session_set_cookie_params(86400);
 $key = file(k_db_get("channel", "folder", "key"));
 $key = $key[0];

@@ -1,8 +1,7 @@
 <script>
-    function load_frame{
+    t = self.setInterval(function() {
         $('#index_body').load('wait_select.php');
-    }
-    t = self.setInterval(load_frame, 2000);
+    }, refresh_clock);
 </script>
 <?php
 include_once("function.php");
@@ -20,5 +19,8 @@ if (!file_exists($file_name)) {
     require("wait_players.html");
     exit();
 }
-    header("Location: ./result.php");
 ?>
+<script>
+    window.clearInterval(t);
+    $('#index_body').load('result.php');
+</script>

@@ -1,13 +1,12 @@
 <?php
 session_start();
 include_once("function.php");
-;
 ?>
 <script>
     function card_check() {
         $.post('card_generation.php',
                 {
-                    id:"<?php echo $_SESSION["id"] ?>"
+                    id: "<?php echo $_SESSION["id"] ?>"
                 }
         );
         $('#index_body').load('king_check.php');
