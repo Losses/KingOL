@@ -12,13 +12,15 @@ include_once("function.php");
         $('#index_body').load('king_check.php');
     }
 </script>
-<a id="index_body_title">Choose a Card!</a>
-<?php
-$players_count = count(k_db_get("players"));
-$i = 2;
-for ($players_count; $i <= $players_count; $i++) {
-    ?>
-    <button class="card" onclick="card_check()" value="" />
+<a id="body_title">Choose a Card!</a>
+<div id="body_cards">
     <?php
-}
-?>
+    $players_count = count(k_db_get("players"));
+    $i = 2;
+    for ($players_count; $i <= $players_count; $i++) {
+        ?>
+        <button class="card" onclick="card_check()" value="" />
+        <?php
+    }
+    ?>
+</div>

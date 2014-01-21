@@ -18,6 +18,7 @@
             });
 </script>
 <?php
+
 include_once("function.php");
 if (is_file(k_db_get("channel", "folder", "result/0"))) {
     $file_content = file(k_db_get("channel", "folder", "result/0"));
@@ -34,13 +35,21 @@ if ($file_content[0] == $_SESSION['id']) {
             $('#index_body').load('wait_select.php');
         </script>
         <?php
+
     } else {
         ?>
-        <a id="index_body_title">You Are The King,Tell me the Order!</a>
+        <script>
+            $("#index_body").animate({
+                height: '240px',
+                marginTop: '-120px'
+            });
+        </script>
+        <a id="body_title">You Are The King<br />Tell me the Order!</a>
         <form action="king_check.php" id="order">
             <input name="order" class="input" />
         </form>
         <?php
+
     }
 } else {
     ?>
@@ -52,5 +61,6 @@ if ($file_content[0] == $_SESSION['id']) {
         $('#index_body').load('wait_select.php');
     </script>
     <?php
+
 }
 ?>

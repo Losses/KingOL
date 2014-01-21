@@ -1,106 +1,189 @@
+@font-face {
+    font-family: 'Ribeye';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Ribeye'), local('Ribeye-Regular'), url('./fonts/Ribeye-Regular.ttf') format('woff');
+}
+
+@font-face {
+    font-family: 'kol';
+    src:url('./fonts/kol.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.animate-spin {
+    -moz-animation: spin 5s infinite linear;
+    -webkit-animation: spin 5s infinite linear;
+    animation: spin 5s infinite linear;
+    display: inline-block;
+}
+
+@-moz-keyframes spin {
+    0% {
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -moz-transform: rotate(359deg);
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(359deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(359deg);
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
 }
+
 body {
-    background: url('images/background.jpg');
-    color: white;
+    background: url('images/background.png');
     font-family: "microsoft yahei";
-    text-shadow: 1px 1px 1px #646464;
 }
+
 ul {
     list-style: none;
 }
+
 .input {
-    width: 350px;
+    width: 330px;
     height: 30px;
-    margin: 15px 20px;
+    margin: 10px auto;
     padding: 5px;
-    background: rgba(255, 255, 255, 0.42);
-    border: 1px solid rgba(255, 255, 255, 0.63);
+    background: #f8e3ad;
+    border: 3px inset #d98453;
     border-radius: 3px;
     font-size: 30px;
-    color: white;
+    color: #b57820;
     text-align: center;
+    display:block;
 }
-.card {
-    width: 50px;
-    height: 50px;
-    border-radius: 10px;
-    background:gray url(./images/mushroom.png) no-repeat;
-    background-size:40px 40px;
-    background-position:center;
+
+.icon{
+    font-family: 'kol';
+    color:#b57820;
 }
-.card_form{
-    width:50px;
-    height:50px;
-    margin:5px;
-    display:inline-block;
+
+#clock{
+    left:170px;
+    margin:15px 0 0 0;
+    font-size:70px;
+    position:relative;
 }
+
 #index_body {
     top: 50%;
     left: 50%;
     width: 400px;
     height: 150px;
     margin: -75px 0 0 -200px;
-    background: rgba(255, 255, 255, 0.22);
-    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: #ebd49a;
+    border: 5px outset #CC6B32;
     border-radius: 4px;
     position: absolute;
 }
-#index_body_title {
+
+#body_list{
+    height:335px;
+    width:300px;
+    margin: 0 auto;
+    overflow-y:auto;
+    overflow-x:hidden;
+    display:block;
+}
+
+#body_list li{
+    border-bottom:dashed #e5b166 1px;
+    color:#b57820;
+    text-align:center;
+}
+
+#body_list li:last-child{
+    border:0;
+}
+
+#body_cards{
+    margin:0 15px;
+}
+
+.card {
+    width: 50px;
+    height: 50px;
+    border: 3px outset #d98453;
+    border-radius: 10px;
+    background: #f8e3ad url('images/mushroom.png');
+    background-size:40px 40px;
+    background-position:center;
+}
+
+#body_title {
+    color:#b27022;
     text-align: center;
-    font-size: 20px;
-    line-height: 50px;
+    font-family:Ribeye;
+    font-size: 27px;
+    line-height: 65px;
     display: block;
 }
+
 #name_fill,#game_waiting{
     display: none;
 }
-#wait_body,
-#game_body {
-    top: 50%;
-    left: 50%;
-    width: 400px;
-    height: 450px;
-    margin: -225px 0 0 -200px;
-    background: rgba(255, 255, 255, 0.22);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    border-radius: 4px;
-    position: absolute;
-}
-#wait_body ul {
-    margin: 10px;
-}
-#wait_body ul li {
-    font-size: 20px;
-    line-height: 35px;
-    display: block;
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.28);
-}
-#wait_body ul li::last-child {
-    border: 0
-}
+
 #wait_icon{
     display:block;
     margin:0 auto;
 }
-.result_num{
-    width:20px;
-    height:20px;
-    font-size:12px;
-    line-height:20px;
-    text-align:center;
-    vertical-align:middle;
-    display:inline-block;
-    border:1px solid rgba(255, 255, 255, 0.58);
-    border-radius:15px;
-    background:rgba(255, 255, 255, 0.53);
-    color:black;
 
+#body_list li:first-child .result_num{
+    font-family: 'kol';
 }
-.result_order{
+
+.result_num{
+    color:#ce9036;
+}
+
+#result_order{
+    height:40px;
+    color:#ebd49a;
     font-size:12px;
     text-align:center;
+    vertical-align: middle;
+    background:#b4833e;
+}
+
+footer{
+    right:10px;
+    bottom:10px;
+    color:#b27022;
+    font-size:10px;
+    position:absolute;
     display:block;
+}
+
+footer a:link,footer a:visited{
+    color:#CC6B32;
+    text-decoration: none;
+    border-bottom:dashed 1px #CC6B32;
 }

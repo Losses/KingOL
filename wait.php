@@ -1,5 +1,11 @@
-<a id="index_body_title">Waiting for Other Players.</a>
-<ul>
+<script>
+    $("#index_body").animate({
+            height: '400px',
+            marginTop: '-200px'
+        });
+</script>
+<a id="body_title">Waiting for Other Players.</a>
+<ul id="body_list">
     <?php
     $file = file("./db/information");
     $channel = explode("|", $file[0]);
@@ -13,10 +19,10 @@
         }
     } else {
         ?>
-            <script>
-            t=window.clearInterval(t);
+        <script>
+            t = window.clearInterval(t);
             $('#index_body').load('game.php');
-            </script>
+        </script>
         <?php
     }
     ?>

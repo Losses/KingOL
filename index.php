@@ -24,7 +24,7 @@ k_head();
             });
         </script>
         <div id="name_fill">
-            <a id="index_body_title">Tell Me Your Name!</a>
+            <a id="body_title">Tell Me Your Name!</a>
             <form id="name_input_form" action="savename.php">
                 <input class="input" name="id" />
             </form>
@@ -41,4 +41,7 @@ k_head();
         ?>
     </div>
     <script id="action_fill"></script>
+    <footer>
+        <a href="https://github.com/Losses/KingOL">KingOL</a> is Designed and Programmed by <a href="open.qzworld.net">Losses Don</a>.
+    </footer>
 </body>

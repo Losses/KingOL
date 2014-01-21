@@ -6,12 +6,12 @@ $i = 0;
 for ($i; $i <= $players_count - 2; $i++) {
     $file_card = k_db_get("channel", "folder", "result") . "/" . $i;
     if (!file_exists($file_card)) {
-        require("wait_players.html");
+        require("./template/wait_players.html");
         exit();
     }
 }
 if (!file_exists($file_name)) {
-    require("wait_players.html");
+    require("./template/wait_players.html");
     exit();
 }
 ?>
