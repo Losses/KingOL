@@ -1,8 +1,3 @@
-<script>
-    t = self.setInterval(function() {
-        $('#index_body').load('wait_select.php');
-    }, refresh_clock);
-</script>
 <?php
 include_once("function.php");
 $players_count = count(k_db_get("players"));
@@ -21,6 +16,6 @@ if (!file_exists($file_name)) {
 }
 ?>
 <script>
-    window.clearInterval(t);
+    t = window.clearInterval(t);
     $('#index_body').load('result.php');
 </script>

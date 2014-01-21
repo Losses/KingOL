@@ -1,7 +1,7 @@
 <?php
 include_once("function.php");
 $file_name = k_db_get("channel", "folder", "start");
-if (file_exists($file_name)) {
+if (is_file($file_name)) {
     ?>
     <a id="index_body_title" name="index_body_title">Result.</a>
     <ul>
@@ -34,7 +34,7 @@ if (file_exists($file_name)) {
         </li>
     </ul>
     <script>
-        window.clearInterval(t);
+        t = window.clearInterval(t);
         t = self.setInterval(function() {
             $('#index_body').load('result.php');
         }, refresh_clock);
@@ -43,7 +43,7 @@ if (file_exists($file_name)) {
 } else {
     ?>
     <script>
-        window.clearInterval(t);
+        t = window.clearInterval(t);
         window.location.reload();
     </script>
     <?php

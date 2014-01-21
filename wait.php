@@ -14,7 +14,7 @@
     } else {
         ?>
             <script>
-            window.clearInterval(t);
+            t=window.clearInterval(t);
             $('#index_body').load('game.php');
             </script>
         <?php

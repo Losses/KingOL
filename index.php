@@ -11,7 +11,7 @@ k_head();
                     $(this).ajaxSubmit({
                         target: '#index_body',
                         success: function() {
-                            window.clearInterval(t);
+                            t = window.clearInterval(t);
                             $("#action_refresh").remove();
                             t = self.setInterval(function() {
                                 $('#index_body').load('wait.php');
