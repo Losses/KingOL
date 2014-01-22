@@ -21,5 +21,5 @@ removeDir("db");
 mkdir("db");
 mkdir("./db/channel");
 file_put_contents("./db/information", "CHANNEL ID|0", FILE_APPEND);
-header("Location: ./admin.php");
+header("Location: ./start_channel.php");
 ?>

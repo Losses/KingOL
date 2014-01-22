@@ -6,4 +6,3 @@ if (!isset($_SESSION["id"])) {
 } else {
     header("Location: ./wait.php");
 }
-?>

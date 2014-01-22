@@ -11,6 +11,11 @@ k_head();
                     $(this).ajaxSubmit({
                         target: '#index_body',
                         success: function() {
+                            s = self.setInterval(function() {
+                                $('#break_check').load('break_check.php');
+                            }, refresh_clock);
+                            $('#break_check').load('break_check.php');
+
                             t = window.clearInterval(t);
                             $("#action_refresh").remove();
                             t = self.setInterval(function() {
@@ -75,7 +80,9 @@ k_head();
         k_refresh("#area_refresh", "./index_refresh_area.php");
         ?>
     </div>
-    <script id="action_fill"></script>
+    <script id="action_fill">
+    </script>
+    <div id="break_check"></div>
     <footer>
         <a href="https://github.com/Losses/KingOL">KingOL</a> is Designed and Programmed by <a href="open.qzworld.net">Losses Don</a>.
     </footer>

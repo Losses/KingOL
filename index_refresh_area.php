@@ -19,4 +19,3 @@ if (file_exists($file_name)) {
     <?php
 
 }
-?>

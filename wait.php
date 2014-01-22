@@ -1,19 +1,18 @@
+<?php
+include_once("function.php");
+?>
 <script>
     $("#index_body").animate({
-            height: '400px',
-            marginTop: '-200px'
-        });
+        height: '400px',
+        marginTop: '-200px'
+    });
 </script>
 <a id="body_title">Waiting for Other Players.</a>
 <ul id="body_list">
     <?php
-    $file = file("./db/information");
-    $channel = explode("|", $file[0]);
-    $info_file_name = "./db/channel/" . $channel[1] . "/start";
-    if (!file_exists($info_file_name)) {
-        $file_name = "./db/channel/" . $channel[1] . "/players";
-        $file_content = file($file_name);
-        $players = explode("|", $file_content[0]);
+    $start = k_db_get("channel", "folder", "start");
+    if (!file_exists($start)) {
+        $players = k_db_get("players");
         foreach ($players as $player) {
             ?><li><?php echo $player; ?></li><?php
         }

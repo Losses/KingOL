@@ -9,4 +9,3 @@ mkdir("./db/channel/" . $channel_new);
 file_put_contents("./db/channel/$channel_new/key", md5(gmdate(DATE_RFC822)), FILE_APPEND);
 mkdir("./db/channel/" . $channel_new . "/result");
 header("Location: ./admin.php");
-?>

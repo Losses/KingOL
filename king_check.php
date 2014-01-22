@@ -1,4 +1,9 @@
-<?php session_start(); ?>
+<?php
+
+session_start();
+include_once("function.php");
+
+?>
 <script>
     $(document).ready(function() {
         $('#order').ajaxForm({
@@ -19,7 +24,6 @@
 </script>
 <?php
 
-include_once("function.php");
 if (is_file(k_db_get("channel", "folder", "result/0"))) {
     $file_content = file(k_db_get("channel", "folder", "result/0"));
 } else {
@@ -63,4 +67,3 @@ if ($file_content[0] == $_SESSION['id']) {
     <?php
 
 }
-?>

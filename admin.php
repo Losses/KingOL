@@ -6,6 +6,9 @@
     <form action="start_game.php">
         <input type="submit" value="Start Game" />
     </form>
+        <form action="admin_break.php">
+        <input type="submit" value="Break Game" />
+    </form>
     <form action="admin_cleardb.php">
         <input type="submit" value="Clear DB" />
     </form>
