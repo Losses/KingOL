@@ -93,6 +93,52 @@ ul {
     position:relative;
 }
 
+header{
+    right:150px;
+    position:fixed;
+}
+
+#header_flag{
+    margin-top:-20px;
+}
+
+#header_inf {
+    width:52px;
+    height:80px;
+    background: #c55327;
+    color:white;
+    font-size:30px;
+    text-align:center;
+    line-height:100px;
+}
+
+#header_lft,#header_rht{
+    width:0;
+    height:0;
+    border-width:13px;
+    border-style: solid;
+    display:inline-block;
+}
+
+#header_lft{
+    border-color:#c55327 transparent transparent #c55327;
+}
+
+#header_rht{
+    border-color:#c55327 #c55327 transparent transparent;
+    margin-left:-5px;
+}
+
+#header_plr video{
+    width:350px;
+    right:-90px;
+    top:-198px;
+    border: 5px outset #CC6B32;
+    border-radius:5px;
+    position:absolute;
+    z-index:233;
+}
+
 #index_body {
     top: 50%;
     left: 50%;
@@ -103,6 +149,7 @@ ul {
     border: 5px outset #CC6B32;
     border-radius: 4px;
     position: absolute;
+    z-index:-1;
 }
 
 #body_list{
