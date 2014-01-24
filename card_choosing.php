@@ -3,12 +3,18 @@ session_start();
 include_once("function.php");
 ?>
 <script>
+    s = self.setInterval(function() {
+        $('#break_check').load('break_check.php');
+    }, refresh_clock);
+    $('#break_check').load('break_check.php');
+
     function card_check() {
         $.post('card_generation.php',
                 {
                     id: "<?php echo $_SESSION["id"] ?>"
                 }
         );
+        s = window.clearInterval(s);
         $('#index_body').load('king_check.php');
     }
 </script>

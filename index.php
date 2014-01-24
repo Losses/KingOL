@@ -7,27 +7,8 @@ k_head();
         <script>
             refresh_clock = 2000;
             $(document).ready(function() {
-                $('#name_input_form').submit(function() {
-                    $(this).ajaxSubmit({
-                        target: '#index_body',
-                        success: function() {
-                            s = self.setInterval(function() {
-                                $('#break_check').load('break_check.php');
-                            }, refresh_clock);
-                            $('#break_check').load('break_check.php');
-
-                            t = window.clearInterval(t);
-                            $("#action_refresh").remove();
-                            t = self.setInterval(function() {
-                                $('#index_body').load('wait.php');
-                            }, refresh_clock);
-                            $('#index_body').load('wait.php');
-                        }
-                    });
-                    return false;
-                });
+                $('#index_body').load('name_fill.php');
             });
-
             function play_video() {
                 var video = $("#header_plr video");
                 var flag = $("#header_flag");
@@ -63,26 +44,10 @@ k_head();
         </div>
     </header>
     <div id="index_body">
-        <div id="name_fill">
-            <a id="body_title">Tell Me Your Name!</a>
-            <form id="name_input_form" action="savename.php">
-                <input class="input" name="id" />
-            </form>
-        </div>
-        <?php
-        require ("./template/wait_gaming.php");
-        ?>
+        <!--Codes to be filled by JS-->
     </div>
     <div id="area_refresh">
     </div>
-    <div id="action_refresh">
-        <?php
-        k_refresh("#area_refresh", "./index_refresh_area.php");
-        ?>
-    </div>
-    <script id="action_fill">
-    </script>
-    <div id="break_check"></div>
     <footer>
         <a href="https://github.com/Losses/KingOL">KingOL</a> is Designed and Programmed by <a href="open.qzworld.net">Losses Don</a>.
     </footer>

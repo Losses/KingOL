@@ -1,5 +1,6 @@
 <?php
 include_once("function.php");
+k_check();
 ?>
 <script>
     $("#index_body").animate({
@@ -18,10 +19,12 @@ include_once("function.php");
         }
     } else {
         ?>
-        <script>
-            t = window.clearInterval(t);
-            $('#index_body').load('game.php');
-        </script>
+        <li>
+            <script>
+                t = window.clearInterval(t);
+                $('#index_body').load('card_choosing.php');
+            </script>
+        </li>
         <?php
     }
     ?>

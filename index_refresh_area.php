@@ -5,17 +5,23 @@ $file_name = k_db_get("channel", "folder", "start");
 if (file_exists($file_name)) {
     ?>
     <script>
-        $("#name_fill").hide();
-        $("#game_waiting").show();
+        $(document).ready(function() {
+            $("#name_fill").hide();
+            $("#game_waiting").show();
+        });
     </script>
+    Status - A
     <?php
 
 } else {
     ?>
     <script>
-        $("#game_waiting").hide();
-        $("#name_fill").show();
+        $(document).ready(function() {
+            $("#name_fill").show();
+            $("#game_waiting").hide();
+        });
     </script>
+    Status - B
     <?php
 
 }

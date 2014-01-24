@@ -1,5 +1,7 @@
 <?php
 include_once("function.php");
+k_check();
+
 $players_count = count(k_db_get("players"));
 $file_name = k_db_get("channel", "folder", "result/order");
 $i = 0;

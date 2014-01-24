@@ -5,11 +5,7 @@ function k_db_get($item_get, $item_get_mode = "", $item_get_follow = "", $locati
         $file = file("$location/db/information");
         $channel = explode("|", $file[0]);
         if (isset($item_get_mode) AND $item_get_mode == "folder") {
-            if (isset($item_get_follow)) {
-                return "$location/db/channel/" . $channel[1] . "/" . $item_get_follow;
-            } else {
-                return "$location/db/channel/" . $channel[1];
-            }
+            return "$location/db/channel/" . $channel[1] . "/" . $item_get_follow;
         } else {
             return $channel[1];
         }
@@ -22,6 +18,21 @@ function k_db_get($item_get, $item_get_mode = "", $item_get_follow = "", $locati
         return $players;
     } else {
         return "Error:Item not Found!";
+    }
+}
+
+function k_check() {
+    $players = k_db_get("channel", "folder", "players");
+    if (!file_exists($players)) {
+        ?><script>
+            if (typeof s !== "undefined") {
+                s = window.clearInterval(s);
+            }
+            t = window.clearInterval(t);
+            $("#index_body").animate({height: '150px', marginTop: '-75px'});
+            $('#index_body').load('name_fill.php');
+        </script><?php
+        exit();
     }
 }
 
