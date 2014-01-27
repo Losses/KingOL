@@ -36,18 +36,23 @@ function k_check() {
     }
 }
 
+function removeDir($dirName) {
+    $result = false;
+    if (!is_dir($dirName)) {
+        trigger_error("ERROR!", E_USER_ERROR);
+    }
+    $handle = opendir($dirName);
+    while (($file = readdir($handle)) !== false) {
+        if ($file != '.' && $file != '..') {
+            $dir = $dirName . DIRECTORY_SEPARATOR . $file;
+            is_dir($dir) ? removeDir($dir) : unlink($dir);
+        }
+    }
+    closedir($handle);
+    $result = rmdir($dirName) ? true : false;
+    return $result;
+}
+
 function k_head() {
     include_once("./template/head.php");
-}
-
-function k_refresh($place = "body", $location = "#", $fix = ".") {
-    include_once("$fix/refresh.php");
-}
-
-function k_replace($place, $location) {
-    echo "<script>$('$place').load('$location');</script>";
-}
-
-function k_jump($location) {
-    echo "<script>window.location.replace(\"$location\")</script>";
 }

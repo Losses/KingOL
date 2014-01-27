@@ -12,10 +12,17 @@ require ("./template/wait_gaming.php");
 <script>
     $(document).ready(function() {
         t = self.setInterval(function() {
-            $('#area_refresh').load('index_refresh_area.php');
+            $.get("index_status.php", function(data) {
+                if (data === "0") {
+                    // if game is going
+                    $("#name_fill").hide();
+                    $("#game_waiting").show();
+                } else {
+                    $("#name_fill").show();
+                    $("#game_waiting").hide();
+                }
+            });
         }, refresh_clock);
-        $('#area_refresh').load('index_refresh_area.php');
-
         $('#name_input_form').submit(function() {
             $(this).ajaxSubmit({
                 target: '#index_body',

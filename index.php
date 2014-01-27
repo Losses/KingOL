@@ -46,8 +46,6 @@ k_head();
     <div id="index_body">
         <!--Codes to be filled by JS-->
     </div>
-    <div id="area_refresh">
-    </div>
     <footer>
         <a href="https://github.com/Losses/KingOL">KingOL</a> is Designed and Programmed by <a href="open.qzworld.net">Losses Don</a>.
     </footer>
