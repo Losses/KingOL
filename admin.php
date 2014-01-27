@@ -8,6 +8,13 @@ $key = "HelloWorld";
 <head>
     <title>KingOL - Admin Panel</title>
     <script type="text/javascript" src="./template/js/jquery-1.4.min.js"></script>
+    <script>
+        function god(action) {
+            $.post("admin.php", "action=" + action, function() {
+                $(".info_error").html(action + "Successfuly");
+            });
+        }
+    </script>
 </head>
 
 <body>
@@ -43,11 +50,9 @@ $key = "HelloWorld";
             mkdir("./db/channel/" . $channel_new);
             file_put_contents("./db/channel/$channel_new/key", md5(gmdate(DATE_RFC822)), FILE_APPEND);
             mkdir("./db/channel/" . $channel_new . "/result");
-            header("Location: ./admin.php");
         } elseif ($_POST["action"] == "start_game") {
             $file_game_start = k_db_get("channel", "folder", "start");
             file_put_contents($file_game_start, FILE_APPEND);
-            header("Location: ./admin.php");
         } elseif ($_POST["action"] == "clear_db") {
             removeDir("db");
             mkdir("db");
@@ -62,18 +67,10 @@ $key = "HelloWorld";
             mkdir("./db/channel/" . $channel_new);
             file_put_contents("./db/channel/$channel_new/key", md5(gmdate(DATE_RFC822)), FILE_APPEND);
             mkdir("./db/channel/" . $channel_new . "/result");
-            header("Location: ./start_channel.php");
         }
     }
     ?>
-    <script>
-        function god(action) {
-            $.post("admin.php"), "action=" + action, function() {
-                location.reload();
-            };
-        }
-    </script>
-
+    <a class="info_error"></a>
     <button onclick='god("start_channel");'>Start a New Channel</button>
     <button onclick='god("start_game");'>Start the Game</button>
     <button onclick='god("clear_db");'>Clean the Database</button>
