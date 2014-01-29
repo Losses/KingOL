@@ -26,6 +26,16 @@ include_once("function.php");
     </header>
     <div id="index_body">
         <!--Codes to be filled by JS-->
+        <div id="name_fill">
+            <a id="body_title">Tell Me Your Name!</a>
+            <form id="name_input_form" action="savename.php">
+                <input class="input" name="slave" />
+            </form>
+        </div>
+        <div id="game_waiting">
+            <div class="animate-spin icon" id="clock"></div>
+            <a id="body_title">You Missed This Round!</a>
+        </div>
     </div>
     <footer>
         <a href="https://github.com/Losses/KingOL">KingOL</a> is Designed and Programmed by <a href="open.qzworld.net">Losses Don</a>.
