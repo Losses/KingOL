@@ -163,7 +163,9 @@ function start_check_game_break() {
 }
 
 function reset_game() {
-    t = window.clearInterval(t);
+    if(typeof t == 'undefined') {
+        t = window.clearInterval(t);
+    }
 
     $('#index_body').children().hide();
 }
