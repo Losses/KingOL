@@ -2,12 +2,6 @@
 include_once("function.php");
 k_check();
 ?>
-<script>
-    $("#index_body").animate({
-        height: '400px',
-        marginTop: '-200px'
-    });
-</script>
 <a id="body_title">Waiting for Other Players.</a>
 <ul id="body_list">
     <?php
