@@ -18,14 +18,13 @@ $(document).ready(function() {
             $(this).ajaxSubmit({
                 target: '#index_body',
                 success: function() {
+                    $("#index_body").animate({
+                        height: '400px',
+                        marginTop: '-200px'
+                    });
                     t = window.clearInterval(t);
                     t = self.setInterval(function() {
-                        $('#index_body').load('wait.php', function() {
-                            $("#index_body").animate({
-                                height: '400px',
-                                marginTop: '-200px'
-                            });
-                        });
+                        $('#index_body').load('wait.php');
                     }, refresh_clock);
                 }
             });
@@ -55,4 +54,4 @@ function exit_video() {
     flag.animate({marginTop: '-135px'}, 100);
     flag.animate({marginTop: '-20px'}, 250);
 }
-;
+

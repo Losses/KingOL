@@ -2,22 +2,6 @@
 session_start();
 include_once("function.php");
 ?>
-<script>
-    s = self.setInterval(function() {
-        $('#break_check').load('break_check.php');
-    }, refresh_clock);
-    $('#break_check').load('break_check.php');
-
-    function card_check() {
-        $.post('card_generation.php',
-                {
-                    id: "<?php echo $_SESSION["id"] ?>"
-                }
-        );
-        s = window.clearInterval(s);
-        $('#index_body').load('king_check.php');
-    }
-</script>
 <a id="body_title">Choose a Card!</a>
 <div id="body_cards">
     <?php
@@ -25,8 +9,20 @@ include_once("function.php");
     $i = 2;
     for ($players_count; $i <= $players_count; $i++) {
         ?>
-        <button class="card" onclick="card_check()" value="" />
+        <button class="card" onclick="card_check()" value="" ></button>
         <?php
     }
     ?>
 </div>
+<script>
+    s = self.setInterval(function() {
+        $('#break_check').load('break_check.php');
+    }, refresh_clock);
+
+    function card_check() {
+        $.post('card_generation.php', {id: "<?php echo $_SESSION["id"] ?>"}, function() {
+            s = window.clearInterval(s);
+            $('#index_body').load('king_check.php');
+        });
+    }
+</script>
