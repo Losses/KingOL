@@ -1,8 +1,8 @@
 <?php
-header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); 
-header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . 'GMT'); 
-header('Cache-Control: no-cache, must-revalidate'); 
-header('Pragma: no-cache'); 
+header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . 'GMT');
+header('Cache-Control: no-cache, must-revalidate');
+header('Pragma: no-cache');
 
 function k_db_get($item_get, $item_get_mode = "", $item_get_follow = "", $location = ".") {
     if ($item_get == "channel") {
@@ -39,21 +39,4 @@ function k_check() {
         </script><?php
         exit();
     }
-}
-
-function removeDir($dirName) {
-    $result = false;
-    if (!is_dir($dirName)) {
-        trigger_error("ERROR!", E_USER_ERROR);
-    }
-    $handle = opendir($dirName);
-    while (($file = readdir($handle)) !== false) {
-        if ($file != '.' && $file != '..') {
-            $dir = $dirName . DIRECTORY_SEPARATOR . $file;
-            is_dir($dir) ? removeDir($dir) : unlink($dir);
-        }
-    }
-    closedir($handle);
-    $result = rmdir($dirName) ? true : false;
-    return $result;
 }
