@@ -1,39 +1,4 @@
 refresh_clock = 2000;
-$(document).ready(function() {
-    $('#index_body').load('name_fill.php', function() {
-        var t;
-        t = self.setInterval(function() {
-            $.get("index_status.php", function(data) {
-                if (data === "playing") {
-                    // if game is going
-                    $("#name_fill").hide();
-                    $("#game_waiting").show();
-                }
-                if (data === "stopped") {
-                    $("#name_fill").show();
-                    $("#game_waiting").hide();
-                }
-            });
-        }, refresh_clock);
-
-        $('#name_input_form').submit(function() {
-            $(this).ajaxSubmit({
-                target: '#index_body',
-                success: function() {
-                    $("#index_body").animate({
-                        height: '400px',
-                        marginTop: '-200px'
-                    });
-                    t = window.clearInterval(t);
-                    t = self.setInterval(function() {
-                        $('#index_body').load('wait.php');
-                    }, refresh_clock);
-                }
-            });
-            return false;
-        });
-    });
-});
 
 function play_video() {
     var video = $("#header_plr video");
@@ -57,3 +22,41 @@ function exit_video() {
     flag.animate({marginTop: '-20px'}, 250);
 }
 
+function check_game_status() {
+    $.get("index_status.php", function(data) {
+        if (data === "playing") {
+            // if game is going
+            $("#name_fill").hide();
+            $("#game_waiting").show();
+        }
+        if (data === "stopped") {
+            $("#name_fill").show();
+            $("#game_waiting").hide();
+        }
+    });
+}
+
+function ask_name() {
+    $('#index_body').load('name_fill.php', function () {
+        $('#name_input_form').submit(function() {
+            $(this).ajaxSubmit({
+                target: '#index_body',
+                success: function() {
+                    $("#index_body").animate({
+                        height: '400px',
+                        marginTop: '-200px'
+                    });
+                    t = window.clearInterval(t);
+                    t = self.setInterval(function() {
+                        $('#index_body').load('wait.php');
+                    }, refresh_clock);
+                }
+            });
+            return false;
+        });
+
+        t = self.setInterval(check_game_status, refresh_clock);
+    });
+}
+
+$(document).ready(function() { ask_name(); });
