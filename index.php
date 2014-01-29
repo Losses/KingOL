@@ -7,6 +7,7 @@ include_once("function.php");
     <link type="text/css" rel="stylesheet" href="./style.css" />
     <script type="text/javascript" src="./template/js/jquery-1.4.min.js"></script>
     <script type="text/javascript" src="./template/js/jquery.form.min.js"></script>
+    <script type="text/javascript" src="./js/video_player.js"></script>
     <script type="text/javascript" src="./js/index_load.js"></script>
     <script type="text/javascript" src="./template/js/fuction.js"></script>
     <title>King Online</title>
@@ -29,12 +30,32 @@ include_once("function.php");
         <div id="name_fill">
             <a id="body_title">Tell Me Your Name!</a>
             <form id="name_input_form" action="savename.php">
-                <input class="input" name="slave" />
+                <input name="slave" class="input"/>
             </form>
         </div>
         <div id="game_waiting">
             <div class="animate-spin icon" id="clock"></div>
             <a id="body_title">You Missed This Round!</a>
+        </div>
+        <div id="wait_players">
+            <a id="body_title">Waiting for Other Players.</a>
+            <ul id="body_list"></ul>
+        </div>
+        <div id="choose_card">
+            <a id="body_title">Choose a Card!</a>
+            <div id="body_cards"></div>
+        </div>
+        <div id="wait_result">
+            <div class="animate-spin icon" id="clock"></div>
+            <a id="body_title">Waiting for Others.</a>
+        </div>
+        <div id="result_king">
+            <a id="body_title">You Are The King<br />Tell me the Order!</a>
+            <form id="order" action="put_king_order.php">
+                <input name="order" class="input" />
+            </form>
+        </div>
+        <div id="result">
         </div>
     </div>
     <footer>

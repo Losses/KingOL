@@ -25,18 +25,6 @@ function k_db_get($item_get, $item_get_mode = "", $item_get_follow = "", $locati
     }
 }
 
-function k_check() {
-    $players = k_db_get("channel", "folder", "players");
-    if (!file_exists($players)) {
-        ?><script>
-            if (typeof s !== "undefined") {
-                s = window.clearInterval(s);
-            }
-            t = window.clearInterval(t);
-            $("#index_body").animate({height: '150px', marginTop: '-75px'});
-            $('#index_body').load('name_fill.php');
-            $.getScript('./js/name_fill.js');
-        </script><?php
-        exit();
-    }
+function is_game_start() {
+    return file_exists(k_db_get("channel", "folder", "start"));
 }
