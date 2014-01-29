@@ -1,9 +1,13 @@
 <?php
 
 include_once("./function.php");
-$file_name = k_db_get("channel", "folder", "start");
-if (file_exists($file_name)) {
-    echo "0";
+
+function is_game_playing() {
+    return file_exists(k_db_get("channel", "folder", "start"));
+}
+
+if (is_game_playing()) {
+    echo "playing";
 } else {
-    echo "1";
+    echo "stopped";
 }

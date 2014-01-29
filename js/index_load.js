@@ -1,13 +1,15 @@
 refresh_clock = 2000;
 $(document).ready(function() {
     $('#index_body').load('name_fill.php', function() {
+        var t;
         t = self.setInterval(function() {
             $.get("index_status.php", function(data) {
-                if (data === "0") {
+                if (data === "playing") {
                     // if game is going
                     $("#name_fill").hide();
                     $("#game_waiting").show();
-                } else {
+                }
+                if (data === "stopped") {
                     $("#name_fill").show();
                     $("#game_waiting").hide();
                 }
