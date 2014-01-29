@@ -52,38 +52,29 @@ function choose_card() {
 }
 
 function card_check() {
-    $.post('post_card.php', {id: id}, function() {
+    $.post('post_card.php', {id: id}, function(data) {
         t = window.clearInterval(t);
 
         $('#choose_card').hide();
 
-        $('#wait_result').show();
-        $("#index_body").animate({height: '150px', marginTop: '-75px'});
-
-        get_result(function (is_king) {
-            if (is_king) {
-                show_king();
-            } else {
-                wait_result();
-            }
-        });
+        var is_king = data == "0";
+        if (is_king) {
+            show_king();
+        } else {
+            wait_result();
+        }
     });
 }
 
-function get_result(cb) {
-    check_status("is_king.php", cb);
-}
-
 function show_king() {
-    $('#wait_result').hide();
     $('#result_king').show();
+    $("#index_body").animate({height: '150px', marginTop: '-75px'});
 
     $('#order').submit(function() {
         $(this).ajaxSubmit({
             target: '#index_body',
             success: function() {
                 $('#result_king').hide();
-                $('#wait_result').show();
 
                 wait_result();
             }
@@ -93,6 +84,9 @@ function show_king() {
 }
 
 function wait_result() {
+    $('#wait_result').show();
+    $("#index_body").animate({height: '150px', marginTop: '-75px'});
+
     t = self.setInterval(function () {
         $.get("get_result.php", function (data) {
             if (data != "") {

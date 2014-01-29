@@ -7,3 +7,5 @@ do {
     $file_result = k_db_get("channel", "folder", "result/" . $file_temp_card);
 } while (file_exists($file_result));
 file_put_contents($file_result, $_POST["id"], FILE_APPEND);
+echo $file_temp_card
+?>
