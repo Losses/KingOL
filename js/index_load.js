@@ -17,6 +17,8 @@ function ask_name() {
                     id = id_;
 
                     $("#name_fill").hide();
+
+                    start_check_game_break();
                     wait_players();
                 });
             }
@@ -146,13 +148,18 @@ function check_status(url, cb) {
     });
 }
 
-function check_game_break() {
-    check_game_breaked(function (isBreaked) {
-        if (isBreaked) {
-            reset_game();
-            ask_name();
-        }
-    });
+function start_check_game_break() {
+    var s;
+    s = self.setInterval(function () {
+        check_game_breaked(function (isBreaked) {
+            if (isBreaked) {
+                self.clearInterval(s);
+
+                reset_game();
+                ask_name();
+            }
+        });
+    }, refresh_clock);
 }
 
 function reset_game() {
@@ -163,5 +170,4 @@ function reset_game() {
 
 $(document).ready(function() {
     ask_name();
-    self.setInterval(check_game_break, refresh_clock);
 });
