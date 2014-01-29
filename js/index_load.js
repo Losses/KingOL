@@ -49,10 +49,11 @@ function wait_players() {
 function choose_card() {
     $('#choose_card').show();
     $('#body_cards').load('get_cards.php');
+    $('#body_cards').delegate('button', 'click', select_card);
 }
 
-function card_check() {
-    $.post('post_card.php', {id: id}, function(data) {
+function select_card() {
+    $.post('select_card.php', {id: id}, function(data) {
         t = window.clearInterval(t);
 
         $('#choose_card').hide();
