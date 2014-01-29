@@ -3,8 +3,8 @@
 include_once("function.php");
 
 function is_all_player_select_complete() {
-    $players_count = count(k_db_get("players"));
-    for ($i = 0; $i <= $players_count - 2; $i++) {
+    $players_count = get_player_count();
+    for ($i = 0; $i < $players_count; $i++) {
         $file_card = k_db_get("channel", "folder", "result") . "/" . $i;
         if (!file_exists($file_card)) return false;
     }
@@ -26,7 +26,7 @@ if (!is_all_player_select_complete() OR !is_order_put_complete()) {
 <a id="body_title" name="index_body_title">Result.</a>
 <ul id="body_list">
     <?php
-    $players_count = count(k_db_get("players")) - 1;
+    $players_count = get_player_count();
     for ($i = 0; $i < $players_count; $i++) {
         $file_card = k_db_get("channel", "folder", "result/") . $i;
         $file_content = file($file_card);

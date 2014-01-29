@@ -28,3 +28,28 @@ function k_db_get($item_get, $item_get_mode = "", $item_get_follow = "", $locati
 function is_game_start() {
     return file_exists(k_db_get("channel", "folder", "start"));
 }
+
+function is_players_exists() {
+    return file_exists(k_db_get("channel", "folder", "players"));
+}
+
+function get_players() {
+    $players = k_db_get("players");
+    array_pop($players);
+    return $players;
+}
+
+function get_player_count() {
+    return count(get_players());
+}
+
+function is_king() {
+    if (is_file(k_db_get("channel", "folder", "result/0"))) {
+        $file_content = file(k_db_get("channel", "folder", "result/0"));
+
+        if ($file_content[0] == $_SESSION['id']) return true;
+        else return false;
+    } else {
+        return false;
+    }
+}
