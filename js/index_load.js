@@ -10,17 +10,15 @@ function ask_name() {
     $('#name_input_form').submit(function() {
         $(this).ajaxSubmit({
             target: '#index_body',
-            success: function() {
+            success: function(data) {
                 t = window.clearInterval(t);
 
-                get_id(function (id_) {
-                    id = id_;
+                id = data;
 
-                    $("#name_fill").hide();
+                $("#name_fill").hide();
 
-                    start_check_game_break();
-                    wait_players();
-                });
+                start_check_game_break();
+                wait_players();
             }
         });
         return false;
@@ -125,12 +123,6 @@ function check_game_started(cb) {
 
 function check_game_breaked(cb) {
     check_status("is_game_breaked.php", cb);
-}
-
-function get_id(cb) {
-    $.get("get_id.php", function(data) {
-        cb(data);
-    });
 }
 
 function check_status(url, cb) {
