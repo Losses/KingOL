@@ -1,6 +1,6 @@
 <?php
 include_once("function.php");
-king_check();
+k_check();
 ?>
 <script>
     $("#index_body").animate({

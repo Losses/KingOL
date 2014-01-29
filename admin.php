@@ -2,6 +2,11 @@
 session_start();
 include_once("function.php");
 
+if (isset($_POST["key"])) {
+    $_SESSION["key"] = $_POST["key"];
+    header("Location:admin.php");
+}
+
 $key = "HelloWorld";
 ?>
 <!doctype HTML>
@@ -24,11 +29,6 @@ $key = "HelloWorld";
         ?>
         <a class="info_error">Wrong Password!</a>
         <?php
-    }
-
-    if (isset($_POST["key"])) {
-        $_SESSION["key"] = $_POST["key"];
-        header("Location:admin.php");
     }
 
     if ((!isset($_SESSION["key"]) AND !isset($_POST["key"])) OR $_SESSION["key"] != $key) {

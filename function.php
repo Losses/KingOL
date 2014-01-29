@@ -1,4 +1,8 @@
 <?php
+header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); 
+header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . 'GMT'); 
+header('Cache-Control: no-cache, must-revalidate'); 
+header('Pragma: no-cache'); 
 
 function k_db_get($item_get, $item_get_mode = "", $item_get_follow = "", $location = ".") {
     if ($item_get == "channel") {
@@ -31,6 +35,7 @@ function k_check() {
             t = window.clearInterval(t);
             $("#index_body").animate({height: '150px', marginTop: '-75px'});
             $('#index_body').load('name_fill.php');
+            $.getScript('./js/name_fill.js');
         </script><?php
         exit();
     }
@@ -51,8 +56,4 @@ function removeDir($dirName) {
     closedir($handle);
     $result = rmdir($dirName) ? true : false;
     return $result;
-}
-
-function k_head() {
-    include_once("./template/head.php");
 }
