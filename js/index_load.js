@@ -2,7 +2,7 @@ var refresh_clock = 2000;
 var t, id;
 
 function ask_name() {
-    $("#index_body").animate({height: '150px', marginTop: '-75px'});
+    $("#index_body").animate({height: '260px', marginTop: '-130px'});
 
     check_game_status();
     t = self.setInterval(check_game_status, refresh_clock);
@@ -11,18 +11,42 @@ function ask_name() {
     obj.submit(function() {
         obj.ajaxSubmit({
             success: function(data) {
-                t = window.clearInterval(t);
+                if (data !== "") {
+                    t = window.clearInterval(t);
 
-                id = data;
+                    id = data;
 
-                obj.unbind("submit");
-                $("#name_fill").hide();
+                    obj.unbind("submit");
+                    $("#name_fill").hide();
 
-                start_check_game_break();
-                wait_players();
+                    start_check_game_break();
+                    wait_players();
+                }
             }
         });
         return false;
+    });
+
+    setup_password_input();
+}
+
+var setup_password_input_guard = false;
+function setup_password_input() {
+    if (setup_password_input_guard) return;
+    setup_password_input_guard = true;
+
+    $('#name_input_form>input[name="password"]').focus(function() {
+        var obj = $(this);
+        if (obj.val() === "password") {
+            obj.toggleClass("input_hint");
+            obj.val("");
+        }
+    }).blur(function() {
+        var obj = $(this);
+        if (obj.val() === "") {
+            obj.toggleClass("input_hint");
+            obj.val("password");
+        }
     });
 }
 
