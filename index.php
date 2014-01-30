@@ -39,6 +39,7 @@ include_once("function.php");
         <div id="wait_players">
             <a id="body_title">Waiting for Other Players.</a>
             <ul id="body_list"></ul>
+            <div class="animate-spin icon" id="clock"></div>
         </div>
         <div id="choose_card">
             <a id="body_title">Choose a Card!</a>
