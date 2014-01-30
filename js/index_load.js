@@ -66,7 +66,7 @@ function select_card() {
 
 function show_king() {
     $('#result_king').show();
-    $("#index_body").animate({height: '150px', marginTop: '-75px'});
+    $("#index_body").animate({height: '240px', marginTop: '-120px'});
 
     $('#order').submit(function() {
         $(this).ajaxSubmit({
