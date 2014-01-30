@@ -29,7 +29,7 @@ $key = "HelloWorld";
 <!doctype HTML>
 <head>
     <title>KingOL - Admin Panel</title>
-    <script type="text/javascript" src="./template/js/jquery-1.4.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-1.11.0.min.js"></script>
     <script>
         function god(action) {
             $.post("admin.php", "action=" + action, function() {

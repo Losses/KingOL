@@ -5,7 +5,7 @@ include_once("function.php");
 <head>
     <meta charset="utf-8" />
     <link type="text/css" rel="stylesheet" href="./style.css" />
-    <script type="text/javascript" src="./js/jquery-1.4.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="./js/jquery.form.min.js"></script>
     <script type="text/javascript" src="./js/video_player.js"></script>
     <script type="text/javascript" src="./js/index_load.js"></script>
