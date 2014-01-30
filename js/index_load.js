@@ -70,7 +70,6 @@ function show_king() {
 
     $('#order').submit(function() {
         $(this).ajaxSubmit({
-            target: '#index_body',
             success: function() {
                 $('#result_king').hide();
 
