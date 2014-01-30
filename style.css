@@ -194,7 +194,8 @@ header{
     display: block;
 }
 
-#name_fill,#game_waiting{
+#name_fill,#game_waiting,#wait_players,
+#choose_card,#wait_result,#result_king,#result{
     display: none;
 }
 

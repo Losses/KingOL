@@ -1,57 +1,162 @@
-refresh_clock = 2000;
-$(document).ready(function() {
-    $('#index_body').load('name_fill.php', function() {
-        t = self.setInterval(function() {
-            $.get("index_status.php", function(data) {
-                if (data === "0") {
-                    // if game is going
-                    $("#name_fill").hide();
-                    $("#game_waiting").show();
-                } else {
-                    $("#name_fill").show();
-                    $("#game_waiting").hide();
-                }
-            });
-        }, refresh_clock);
+var refresh_clock = 2000;
+var t, id;
 
-        $('#name_input_form').submit(function() {
-            $(this).ajaxSubmit({
-                target: '#index_body',
-                success: function() {
-                    $("#index_body").animate({
-                        height: '400px',
-                        marginTop: '-200px'
-                    });
-                    t = window.clearInterval(t);
-                    t = self.setInterval(function() {
-                        $('#index_body').load('wait.php');
-                    }, refresh_clock);
-                }
-            });
-            return false;
+function ask_name() {
+    $("#index_body").animate({height: '150px', marginTop: '-75px'});
+
+    check_game_status();
+    t = self.setInterval(check_game_status, refresh_clock);
+
+    $('#name_input_form').submit(function() {
+        $(this).ajaxSubmit({
+            target: '#index_body',
+            success: function(data) {
+                t = window.clearInterval(t);
+
+                id = data;
+
+                $("#name_fill").hide();
+
+                start_check_game_break();
+                wait_players();
+            }
         });
+        return false;
     });
+}
+
+function wait_players() {
+    $('#wait_players').show();
+    $("#index_body").animate({
+        height: '400px',
+        marginTop: '-200px'
+    });
+
+    t = self.setInterval(function () {
+        $('#wait_players>#body_list').load('get_players.php');
+        check_game_started(function (started) {
+            if (started) {
+                t = window.clearInterval(t);
+                $('#wait_players').hide();
+                choose_card();
+            }
+        });
+    }, refresh_clock);
+}
+
+function choose_card() {
+    $('#choose_card').show();
+    $('#body_cards').load('get_cards.php');
+    $('#body_cards').delegate('button', 'click', select_card);
+}
+
+function select_card() {
+    $.post('select_card.php', {id: id}, function(data) {
+        t = window.clearInterval(t);
+
+        $('#choose_card').hide();
+
+        var is_king = data == "0";
+        if (is_king) {
+            show_king();
+        } else {
+            wait_result();
+        }
+    });
+}
+
+function show_king() {
+    $('#result_king').show();
+    $("#index_body").animate({height: '150px', marginTop: '-75px'});
+
+    $('#order').submit(function() {
+        $(this).ajaxSubmit({
+            target: '#index_body',
+            success: function() {
+                $('#result_king').hide();
+
+                wait_result();
+            }
+        });
+        return false;
+    });
+}
+
+function wait_result() {
+    $('#wait_result').show();
+    $("#index_body").animate({height: '150px', marginTop: '-75px'});
+
+    t = self.setInterval(function () {
+        $.get("get_result.php", function (data) {
+            if (data != "") {
+                t = window.clearInterval(t);
+
+                $('#wait_result').hide();
+
+                $('#result').html(data);
+                $('#result').show();
+                $("#index_body").animate({
+                    height: '440px',
+                    marginTop: '-220px'
+                });
+            }
+        });
+    }, refresh_clock);
+}
+
+function check_game_status() {
+    check_game_started(function (started) {
+        if (started) {
+            // if game is going
+            $("#name_fill").hide();
+            $("#game_waiting").show();
+        } else {
+            $("#name_fill").show();
+            $("#game_waiting").hide();
+        }
+    });
+}
+
+function check_game_started(cb) {
+    check_status("is_game_started.php", cb);
+}
+
+function check_game_breaked(cb) {
+    check_status("is_game_breaked.php", cb);
+}
+
+function check_status(url, cb) {
+    $.get(url, function(data) {
+        if (data === "true") {
+            cb(true);
+        } else { // "false"
+            cb(false);
+        }
+    });
+}
+
+function start_check_game_break() {
+    var s;
+    s = self.setInterval(function () {
+        check_game_breaked(function (isBreaked) {
+            if (isBreaked) {
+                self.clearInterval(s);
+
+                reset_game();
+                ask_name();
+            }
+        });
+    }, refresh_clock);
+}
+
+function reset_game() {
+    if(typeof t == 'undefined') {
+        t = window.clearInterval(t);
+    }
+
+    $('#index_body').children().hide();
+}
+
+$(document).ready(function() {
+    ask_name();
 });
-
-function play_video() {
-    var video = $("#header_plr video");
-    var flag = $("#header_flag");
-    var plr = document.getElementById('plr');
-    flag.animate({marginTop: '-15px'}, 100);
-    flag.animate({marginTop: '-120px'}, 250);
-    video.animate({top: '70px'}, 250);
-    video.animate({top: '20px'}, 100);
-    plr.play();
-}
-
-function exit_video() {
-    var video = $("#header_plr video");
-    var flag = $("#header_flag");
-    var plr = document.getElementById('plr');
-    plr.pause();
-    video.animate({top: '70px'}, 100);
-    video.animate({top: '-220px'}, 250);
-    flag.animate({marginTop: '-135px'}, 100);
-    flag.animate({marginTop: '-20px'}, 250);
-}
-
