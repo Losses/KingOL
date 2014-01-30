@@ -31,7 +31,7 @@ function wait_players() {
         marginTop: '-200px'
     });
 
-    t = self.setInterval(function () {
+    t = self.setInterval(function() {
         $('#wait_players>#body_list').load('get_players.php');
         check_game_started(function (started) {
             if (started) {
@@ -55,7 +55,7 @@ function select_card() {
 
         $('#choose_card').hide();
 
-        var is_king = data == "0";
+        var is_king = data === "0";
         if (is_king) {
             show_king();
         } else {
@@ -85,9 +85,9 @@ function wait_result() {
     $('#wait_result').show();
     $("#index_body").animate({height: '150px', marginTop: '-75px'});
 
-    t = self.setInterval(function () {
+    t = self.setInterval(function() {
         $.get("get_result.php", function (data) {
-            if (data != "") {
+            if (data !== "") {
                 t = window.clearInterval(t);
 
                 $('#wait_result').hide();
@@ -136,7 +136,7 @@ function check_status(url, cb) {
 
 function start_check_game_break() {
     var s;
-    s = self.setInterval(function () {
+    s = self.setInterval(function() {
         check_game_breaked(function (isBreaked) {
             if (isBreaked) {
                 self.clearInterval(s);
