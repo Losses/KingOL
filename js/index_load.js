@@ -9,7 +9,6 @@ function ask_name() {
 
     $('#name_input_form').submit(function() {
         $(this).ajaxSubmit({
-            target: '#index_body',
             success: function(data) {
                 t = window.clearInterval(t);
 
