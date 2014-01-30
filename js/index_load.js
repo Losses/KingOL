@@ -50,7 +50,7 @@ function choose_card() {
 }
 
 function select_card() {
-    $.post('select_card.php', {id: id}, function(data) {
+    $.post('select_card.php', {"id": id}, function(data) {
         t = window.clearInterval(t);
 
         $('#choose_card').hide();
