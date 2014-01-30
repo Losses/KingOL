@@ -6,4 +6,3 @@ for ($i=0; $i < $players_count; $i++) {
     <button class="card"></button>
 <?php
 }
-?>
