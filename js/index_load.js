@@ -149,7 +149,7 @@ function start_check_game_break() {
 }
 
 function reset_game() {
-    if(typeof t == 'undefined') {
+    if(typeof t !== 'undefined') {
         t = window.clearInterval(t);
     }
 
