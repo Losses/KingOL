@@ -1,4 +1,5 @@
 <?php
+
 header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . 'GMT');
 header('Cache-Control: no-cache, must-revalidate');
@@ -39,6 +40,12 @@ function get_players() {
     return $players;
 }
 
+function get_channel_key(){
+    $key = file(k_db_get("channel", "folder", "key"));
+$key = $key[0];
+return $key;
+}
+
 function get_player_count() {
     return count(get_players());
 }
@@ -47,8 +54,11 @@ function is_king() {
     if (is_file(k_db_get("channel", "folder", "result/0"))) {
         $file_content = file(k_db_get("channel", "folder", "result/0"));
 
-        if ($file_content[0] == $_SESSION['id']) return true;
-        else return false;
+        if ($file_content[0] == $_SESSION['id']) {
+            return true;
+        } else {
+            return false;
+        }
     } else {
         return false;
     }

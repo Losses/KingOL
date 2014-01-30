@@ -3,12 +3,8 @@
 session_start();
 include_once("function.php");
 session_set_cookie_params(86400);
-$key = file(k_db_get("channel", "folder", "key"));
-$key = $key[0];
+$key = get_channel_key();
 if (isset($_SESSION["channel_kv"]) AND $_SESSION["channel_kv"] == $key) {
-    echo $_SESSION["channel_kv"];
-    echo $key;
-    echo "Cheater";
 } else {
     $_SESSION["id"] = $_GET["slave"];
     $_SESSION["channel_kv"] = $key;

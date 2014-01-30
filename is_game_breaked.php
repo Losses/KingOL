@@ -1,6 +1,10 @@
 <?php
+
+session_start();
 include_once("function.php");
 
-if (is_players_exists()) echo "false";
-else echo "true";
-?>
+$key = get_channel_key();
+if ($key == $_SESSION["channel_kv"])
+    echo "false";
+else
+    echo "true";
