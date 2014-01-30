@@ -7,13 +7,15 @@ function ask_name() {
     check_game_status();
     t = self.setInterval(check_game_status, refresh_clock);
 
-    $('#name_input_form').submit(function() {
-        $(this).ajaxSubmit({
+    var obj = $('#name_input_form');
+    obj.submit(function() {
+        obj.ajaxSubmit({
             success: function(data) {
                 t = window.clearInterval(t);
 
                 id = data;
 
+                obj.unbind("submit");
                 $("#name_fill").hide();
 
                 start_check_game_break();
@@ -50,6 +52,8 @@ function choose_card() {
 }
 
 function select_card() {
+    $('#body_cards').undelegate('button', 'click');
+
     $.post('select_card.php', {"id": id}, function(data) {
         t = window.clearInterval(t);
 
@@ -68,9 +72,12 @@ function show_king() {
     $('#result_king').show();
     $("#index_body").animate({height: '240px', marginTop: '-120px'});
 
-    $('#order').submit(function() {
-        $(this).ajaxSubmit({
+    var obj = $('#order');
+    obj.submit(function() {
+        obj.ajaxSubmit({
             success: function() {
+                obj.unbind("submit");
+
                 $('#result_king').hide();
 
                 wait_result();
