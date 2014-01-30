@@ -33,8 +33,9 @@ function wait_players() {
         marginTop: '-200px'
     });
 
+    refresh_players_list();
     t = self.setInterval(function() {
-        $('#wait_players>#body_list').load('get_players.php');
+        refresh_players_list();
         check_game_started(function (started) {
             if (started) {
                 t = window.clearInterval(t);
@@ -43,6 +44,10 @@ function wait_players() {
             }
         });
     }, refresh_clock);
+}
+
+function refresh_players_list() {
+    $('#wait_players>#body_list').load('get_players.php');
 }
 
 function choose_card() {
@@ -91,22 +96,25 @@ function wait_result() {
     $('#wait_result').show();
     $("#index_body").animate({height: '150px', marginTop: '-75px'});
 
-    t = self.setInterval(function() {
-        $.get("get_result.php", function (data) {
-            if (data !== "") {
-                t = window.clearInterval(t);
+    refresh_result();
+    t = self.setInterval(refresh_result, refresh_clock);
+}
 
-                $('#wait_result').hide();
+function refresh_result() {
+    $.get("get_result.php", function (data) {
+        if (data !== "") {
+            t = window.clearInterval(t);
 
-                $('#result').html(data);
-                $('#result').show();
-                $("#index_body").animate({
-                    height: '440px',
-                    marginTop: '-220px'
-                });
-            }
-        });
-    }, refresh_clock);
+            $('#wait_result').hide();
+
+            $('#result').html(data);
+            $('#result').show();
+            $("#index_body").animate({
+                height: '440px',
+                marginTop: '-220px'
+            });
+        }
+    });
 }
 
 function check_game_status() {
